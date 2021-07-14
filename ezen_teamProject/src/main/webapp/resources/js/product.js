@@ -79,7 +79,19 @@ var reMsg =
    return reMsg;
 }
 
-function reveiwList(obj, parentTag){
+function reviewList(list){
+	
+	      for(var i=0; i < list.length; i++){
+	      console.log(i);
+         $("#reviewList").append("<div>"+i+"</div>");
+         var parentTag = $("#reviewList > div:last-child");
+         review(list[i], parentTag);
+      }
+	
+
+}
+
+function review(obj, parentTag){
 	var reRno = obj['reRno'];
 	
 	var reWriter =  obj['reWriter'];
@@ -116,24 +128,24 @@ function reveiwList(obj, parentTag){
       </div>
    `;
    
-   parentTag.html(msg);
+   parentTag.append(msg);
    
    $(".starList").each(function(index) {
 
-if(index < reStar){
-console.log(index, reStar);
-
-
-$(this).addClass("bright");
-}else{
-
-$(this).removeClass("bright");
-
-}
-
-}); 
+	if(index < reStar){
+	
+		console.log(reStar+"==reStar");
+	
+		$(this).addClass("bright");
+	}else{
+	
+		$(this).removeClass("bright");
+	
+	}
+	
+	}); 
    
-   return msg;
+
 }
 
   

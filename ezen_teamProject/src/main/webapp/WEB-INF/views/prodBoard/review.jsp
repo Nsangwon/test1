@@ -284,19 +284,20 @@
 				
 				var dummyData = data.list;
 				
-				var msg = "";
+				reviewList(dummyData);
+				
+				/* var msg = "";
 				for(var i=0; i<dummyData.length; i++){
 					var obj = dummyData[i];
 					
 					var parentTag = $("#reviewList").append("<div></div>");
-					
 					
 					var str = reveiwList(obj, parentTag);
 					
 					msg+=str;					
 					
 				}
-					$("#reviewList").append(msg);	//	리스트
+					$("#reviewList").append(msg);	//	리스트 */
 				console.log(dummyData);
 
 			});
