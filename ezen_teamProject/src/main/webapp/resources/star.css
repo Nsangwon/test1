@@ -10,12 +10,6 @@ cursor: pointer;
 }
 
 
-.bright{
-
-color: yellow;
-
-}
-
 .starList{
 	
 color: #E4E4E4;     
@@ -24,6 +18,11 @@ cursor: pointer;
 
 }
 
+.bright{
+
+color: yellow;
+
+}
 
 
 .pagination a.active:hover{

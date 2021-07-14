@@ -79,20 +79,29 @@ var reMsg =
    return reMsg;
 }
 
-function reveiwList(reRno, reWriter,reStar, reUpdatedate, reContent){
+function reveiwList(obj, parentTag){
+	var reRno = obj['reRno'];
+	
+	var reWriter =  obj['reWriter'];
+	
+	var reStar = obj['reStar'];
+	
+	var reUpdatedate =  obj['reUpdatedate'];
+	
+	var reContent =  obj['reContent'];
 
    var msg = `
    <div class="panel panel-primary">
          <div class="panel-heading">
          <span>reRno: ${reRno}</span>
-          <span class="glyphicon glyphicon-user" aria-hidden="true"></span><span>${reWriter}</span>
-           <span class="starList"> 
-           reStar: ${reStar} 
-           <span data-idx="0" id="starList0" class="glyphicon glyphicon-star  bright" aria-hidden="true"></span>
-			<span data-idx="1" id="starList1" class="glyphicon glyphicon-star " aria-hidden="true"></span>
-			<span data-idx="2" id="starList2" class="glyphicon glyphicon-star " aria-hidden="true"></span>
-			<span data-idx="3" id="starList3" class="glyphicon glyphicon-star " aria-hidden="true"></span>
-			<span data-idx="4" id="starList4" class="glyphicon glyphicon-star " aria-hidden="true"></span>
+           <span class="glyphicon glyphicon-user" aria-hidden="true"></span><span>${reWriter}</span>
+           <span> 
+            <span class="glyphicon glyphicon-star">:${reStar} 
+           <span data-idx="0" id="starList0" class="glyphicon glyphicon-star starList bright" aria-hidden="true"></span>
+			<span data-idx="1" id="starList1" class="glyphicon glyphicon-star starList" aria-hidden="true"></span>
+			<span data-idx="2" id="starList2" class="glyphicon glyphicon-star starList" aria-hidden="true"></span>
+			<span data-idx="3" id="starList3" class="glyphicon glyphicon-star starList" aria-hidden="true"></span>
+			<span data-idx="4" id="starList4" class="glyphicon glyphicon-star starList" aria-hidden="true"></span>
 	       </span>
            <span class="pull-right"><span class="glyphicon glyphicon-time" aria-hidden="true"></span>${reUpdatedate}</span>
          </div>
@@ -106,6 +115,23 @@ function reveiwList(reRno, reWriter,reStar, reUpdatedate, reContent){
          </div>
       </div>
    `;
+   
+   parentTag.html(msg);
+   
+   $(".starList").each(function(index) {
+
+if(index < reStar){
+console.log(index, reStar);
+
+
+$(this).addClass("bright");
+}else{
+
+$(this).removeClass("bright");
+
+}
+
+}); 
    
    return msg;
 }

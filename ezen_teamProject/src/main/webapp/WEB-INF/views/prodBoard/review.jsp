@@ -44,29 +44,8 @@
 	    			<textarea  rows="10" name="reContent" id="reContent" class="form-control"></textarea>
 	    		</div>
 	    		
-	    		<!-- <div class="form-group">
-	    			<label for="reviewRank">등급</label> 
-		    			<div id="reviewRank" class="btn-group " data-toggle="buttons" style=" margin: 10px 0px;">
-						  <label class="btn btn-danger active">
-						    <input type="radio" name="reviewRank" id="rank1" checked > 매우나쁨
-						  </label>
-						  <label class="btn btn-warning">
-						    <input type="radio" name="reviewRank" id="rank2" checked> 나쁨
-						  </label>
-						  <label class="btn btn-success">
-						    <input type="radio" name="reviewRank" id="rank3" checked> 보통
-						  </label>
-						  <label class="btn btn-info">
-						    <input type="radio" name="reviewRank" id="rank4" checked> 좋음
-						  </label>
-						  <label class="btn btn-primary">
-						    <input type="radio" name="reviewRank" id="rank5" checked> 매우좋음
-						  </label>
-						</div>
-	    		</div> -->
-	    		
-	    		<div class="form-group stars" id="reStar">
-	    		
+	    		<div class="form-group stars" id="reStar"> 
+	    		   		
 	    		</div>
 	    		
 	    		<div class="form-group">
@@ -302,32 +281,22 @@
 				}else{
 					$("#next").show();
 				}
-			
-			
 				
 				var dummyData = data.list;
+				
+				var msg = "";
 				for(var i=0; i<dummyData.length; i++){
 					var obj = dummyData[i];
-					var msg = reveiwList(obj['reRno'], obj['reWriter'],obj['reStar'], obj['reUpdatedate'], obj['reContent']);
 					
-				    var reStar = parseInt(obj['reStar']);
-				    console.log(reStar+"====reStar");
-				    
-				    var idx = $(".star").attr("data-idx");
-				    console.log(idx+"====idx");
-				    console.log(i+"=========================i");
-				    
-				    $(".star").each(function(index) {
-				    	console.log(index+"====index");
-					for(var j=index; j<=reStar; j++){
-						console.log(j+"=============j");
-				        $(".star").addClass("bright");
-				        }
-					});
+					var parentTag = $("#reviewList").append("<div></div>");
 					
-					$("#reviewList").append(msg);	//	리스트
+					
+					var str = reveiwList(obj, parentTag);
+					
+					msg+=str;					
 					
 				}
+					$("#reviewList").append(msg);	//	리스트
 				console.log(dummyData);
 
 			});
