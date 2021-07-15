@@ -82,8 +82,8 @@ var reMsg =
 function reviewList(list){
 	
 	      for(var i=0; i < list.length; i++){
-	      console.log(i);
-         $("#reviewList").append("<div>"+i+"</div>");
+
+         $("#reviewList").append("<div></div>");
          var parentTag = $("#reviewList > div:last-child");
          review(list[i], parentTag);
       }
@@ -102,20 +102,23 @@ function review(obj, parentTag){
 	
 	var reContent =  obj['reContent'];
 
+	var arrReStar = [reStar >=1?'bright':"" , reStar >=2?'bright':"" , reStar >=3?'bright':"" , reStar >=4?'bright': "" , reStar >=5?'bright':""];
+
    var msg = `
-   <div class="panel panel-primary">
+   <div class="panel panel-info">
          <div class="panel-heading">
          <span>reRno: ${reRno}</span>
            <span class="glyphicon glyphicon-user" aria-hidden="true"></span><span>${reWriter}</span>
-           <span> 
-            <span class="glyphicon glyphicon-star">:${reStar} 
-           <span data-idx="0" id="starList0" class="glyphicon glyphicon-star starList bright" aria-hidden="true"></span>
-			<span data-idx="1" id="starList1" class="glyphicon glyphicon-star starList" aria-hidden="true"></span>
-			<span data-idx="2" id="starList2" class="glyphicon glyphicon-star starList" aria-hidden="true"></span>
-			<span data-idx="3" id="starList3" class="glyphicon glyphicon-star starList" aria-hidden="true"></span>
-			<span data-idx="4" id="starList4" class="glyphicon glyphicon-star starList" aria-hidden="true"></span>
+           <span class="pull-right"><span class="glyphicon glyphicon-time" aria-hidden="true"></span>${reUpdatedate}</span> 
+          
+            <span class="pull-right starList"> 
+           <span data-idx="0" class="glyphicon glyphicon-star  ${arrReStar[0]}" aria-hidden="true"></span>
+			<span data-idx="1" class="glyphicon glyphicon-star  ${arrReStar[1]}" aria-hidden="true"></span>
+			<span data-idx="2" class="glyphicon glyphicon-star  ${arrReStar[2]}" aria-hidden="true"></span>
+			<span data-idx="3" class="glyphicon glyphicon-star  ${arrReStar[3]}" aria-hidden="true"></span>
+			<span data-idx="4" class="glyphicon glyphicon-star  ${arrReStar[4]}" aria-hidden="true"></span>
 	       </span>
-           <span class="pull-right"><span class="glyphicon glyphicon-time" aria-hidden="true"></span>${reUpdatedate}</span>
+	      
          </div>
          <div class="panel-body">
             <p>${reContent}</p>
@@ -130,15 +133,12 @@ function review(obj, parentTag){
    
    parentTag.append(msg);
    
-   $(".starList").each(function(index) {
+   $(".arrReStar").each(function(index) {
 
 	if(index < reStar){
 	
-		console.log(reStar+"==reStar");
-	
 		$(this).addClass("bright");
 	}else{
-	
 		$(this).removeClass("bright");
 	
 	}
