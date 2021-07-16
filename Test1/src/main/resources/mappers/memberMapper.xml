@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.member">
+
+<delete id="delete">
+		DELETE FROM member WHERE userId = #{userId}
+	</delete>
+
+<update id="update">
+	UPDATE member SET userName = #{userName}, email = #{email}, updateDate = SYSDATE 
+	WHERE userId= #{userId} AND userPW = #{userPw}
+</update>
+
+  <select id="read" resultType="kr.co.domain.MemberDTO">
+      SELECT * FROM member WHERE userId = #{userId}
+   </select>
+   
+ <insert id="insert">
+   	INSERT INTO member(userId, userPw, userName, email) 
+   	VALUES( #{userId}, #{userPw}, #{userName}, #{email})
+   </insert>
+<!--#{}는 갯메서드를 호출하는 것이다.  -->
+
+   <select id="list" resultType="kr.co.domain.MemberDTO">
+      SELECT * FROM member
+   </select> 
+  
+	
+  
+</mapper>
