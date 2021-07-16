@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.reply">
+
+	<delete id="deleteByBno">
+		delete from reply where bno = #{bno}
+	</delete>
+
+	<update id="update">
+		update reply set replyer = #{replyer}, replytext = #{replytext},
+		updatedate = SYSDATE WHERE rno = #{rno}
+	</update>
+	
+	<delete id="delete">
+		delete from reply where rno = #{rno}
+	</delete>
+	
+	<select id="list" resultType="kr.co.domain.ReplyVO">
+		select * from reply where bno = #{bno} order by rno ASC
+	</select>
+
+	<insert id="insert">
+		insert into reply (rno, bno, replyer, replytext) 
+		values ((SELECT NVL2(MAX(rno), MAX(rno)+1, 1) FROM reply),
+		 #{bno}, #{replyer}, #{replytext})
+  	<selectKey order="AFTER" keyProperty="rno" resultType="Integer">
+  		SELECT MAX(rno) FROM reply
+  	</selectKey>
+  </insert>
+  
+  
+</mapper>
